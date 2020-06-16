@@ -83,15 +83,25 @@ function requestUserRepos(username){
         }
 
         // Calculate percentages for languages
-        var x = {};
+        let res = {};
 
         arr.map(el => {
-        if (!x[el]) {
-            return x[el] = arr.filter(ob => ob === el).length * 100 / arr.length;
+        if (!res[el]) {
+            return res[el] = (arr.filter(ob => ob === el).length * 100 / arr.length).toFixed(2) + '%';
             }
-            // To two decimal places
         })
-        console.log(x)
+
+        // Get the p with id of of langPercentages
+        let p = document.getElementById('langPercentages');
+
+        // Get percentages
+        var x, txt = "";
+
+        for (x in res) {
+            txt += x + ": " + res[x] + " ";
+          };
+          
+        p.innerHTML = txt;
 
     }
     
