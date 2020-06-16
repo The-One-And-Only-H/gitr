@@ -40,6 +40,8 @@ function requestUserRepos(username){
     
         // Parse API data into JSON
         const data = JSON.parse(this.response);
+
+        let arr = [];
         
         // Loop over each object in data array
         for (let i in data) {
@@ -69,12 +71,27 @@ function requestUserRepos(username){
                     <p><strong>Language:</strong> ${data[i].language}</p>
                     <p><strong>URL:</strong> <a href="${data[i].html_url}">${data[i].html_url}</a></p>
                 `);
+
+                let langs = data[i].language;
+                arr.push(langs);
+
             }
             
             // Append each li to the ul
             ul.appendChild(li);
         
         }
+
+        // Calculate percentages for languages
+        var x = {};
+
+        arr.map(el => {
+        if (!x[el]) {
+            return x[el] = arr.filter(ob => ob === el).length * 100 / arr.length;
+            }
+            // To two decimal places
+        })
+        console.log(x)
 
     }
     
