@@ -105,14 +105,14 @@ function requestUserRepos(username) {
 
             // Get the ul with id of of userRepos
             let ul = document.getElementById('userRepos');
-    
-            // Create variable that will create li's to be added to ul
-            let li = document.createElement('li');
-            
-            // Add Bootstrap list item class to each li
-            li.classList.add('list-group-item')
 
             if (data[i].language !== null && data[i].fork === false) {
+                // Create variable that will create li's to be added to ul
+                let li = document.createElement('li');
+            
+                // Add Bootstrap list item class to each li
+                li.classList.add('list-group-item')
+
                 // Create the html markup for each li
                 li.innerHTML = (`
                     <p><strong>Repo:</strong> ${data[i].name}</p>
@@ -121,13 +121,13 @@ function requestUserRepos(username) {
                     <p><strong>URL:</strong> <a href="${data[i].html_url}">${data[i].html_url}</a></p>
                 `);
 
+                // Append each li to the ul
+                ul.appendChild(li);
+
                 let langs = data[i].language;
                 arr.push(langs);
 
-            }
-            
-            // Append each li to the ul
-            ul.appendChild(li);
+            } 
         
         }
 
