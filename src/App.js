@@ -48,27 +48,19 @@ function requestUser(username) {
         let p = document.getElementById('userProfile');
 
         // Get the p tag
-        if (data.bio !== null && data.location !== null) {
-            p.innerHTML = (`
-                <p><strong>Bio:</strong> ${data.bio}</p>
-                <p><strong>Location:</strong> ${data.location}</p>
-            `);
-        } else if (data.bio === null && data.location !== null) {
-            p.innerHTML = (`
-                <p>Bio unspecified</p>
-                <p><strong>Location:</strong> ${data.location}</p>
-            `);
-        } else if (data.bio !== null && data.location === null) {
-            p.innerHTML = (`
-                <p><strong>Bio:</strong> ${data.bio}</p>
-                <p>Location unspecified</p>
-            `);
-        } else {
-            p.innerHTML = (`
-                <p>Bio unspecified</p>
-                <p>Location unspecified</p>
-            `);
-        }
+        let bio = (data.bio !== null ? (
+            `<p><strong>Bio:</strong> ${data.bio}</p>`
+        ) : (
+            `<p>Bio unspecified</p>`
+        )); 
+
+        let location = (data.location !== null ? (
+            `<p><strong>Location:</strong> ${data.location}</p>`
+        ) : (
+            `<p>Location unspecified</p>`
+        ));
+
+        p.innerHTML = bio + location;
 
     }
 
@@ -143,8 +135,8 @@ function requestUserRepos(username) {
         let res = {};
 
         arr.map(el => {
-        if (!res[el]) {
-            return res[el] = (arr.filter(ob => ob === el).length * 100 / arr.length).toFixed(0) + '%';
+            if (!res[el]) {
+                return res[el] = (arr.filter(ob => ob === el).length * 100 / arr.length).toFixed(0) + '%';
             }
         })
 
@@ -152,11 +144,11 @@ function requestUserRepos(username) {
         let p = document.getElementById('langPercentages');
 
         // Get percentages
-        var x, txt = "";
+        let x, txt = "";
 
         for (x in res) {
             txt += x + ": " + res[x] + " ";
-          };
+        };
           
         p.innerHTML = txt;
 
@@ -168,9 +160,6 @@ function requestUserRepos(username) {
 }
 
 function App() {
-  // Call function passing in GitHub username
-  // requestUserRepos('the-one-and-only-h');
-
   return (
     <div className="App" />
   );
