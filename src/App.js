@@ -48,10 +48,27 @@ function requestUser(username) {
         let p = document.getElementById('userProfile');
 
         // Get the p tag
-        p.innerHTML = (`
-            <p>${data.bio}</p>
-            <p>${data.location}</p>
-        `);
+        if (data.bio !== null && data.location !== null) {
+            p.innerHTML = (`
+                <p><strong>Bio:</strong> ${data.bio}</p>
+                <p><strong>Location:</strong> ${data.location}</p>
+            `);
+        } else if (data.bio === null && data.location !== null) {
+            p.innerHTML = (`
+                <p>Bio unspecified</p>
+                <p><strong>Location:</strong> ${data.location}</p>
+            `);
+        } else if (data.bio !== null && data.location === null) {
+            p.innerHTML = (`
+                <p><strong>Bio:</strong> ${data.bio}</p>
+                <p>Location unspecified</p>
+            `);
+        } else {
+            p.innerHTML = (`
+                <p>Bio unspecified</p>
+                <p>Location unspecified</p>
+            `);
+        }
 
     }
 
