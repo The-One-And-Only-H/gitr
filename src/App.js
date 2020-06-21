@@ -17,15 +17,55 @@ gitHubForm.addEventListener('submit', (e) => {
     let gitHubUsername = usernameInput.value;          
 
     // Run GitHub API function, passing in the GitHub username
+    requestUser(gitHubUsername);
     requestUserRepos(gitHubUsername);
 
 })
 
 
-function requestUserRepos(username){
+function requestUser(username) {
     
     // Create new XMLHttpRequest object
     const xhr = new XMLHttpRequest();
+
+    // Fetch profile data
+
+    // GitHub endpoint, dynamically passing in specified username
+    const url = `https://api.github.com/users/${username}`;
+
+    // Open a new connection, using a GET request via URL endpoint
+    // Providing 3 arguments (GET/POST, The URL, Async True/False)
+    xhr.open('GET', url, true);
+    
+    // When request is received
+    // Process it here
+    xhr.onload = function () {
+    
+        // Parse API data into JSON
+        const data = JSON.parse(this.response);
+
+        // Get the p tag with id of of userProfile
+        let p = document.getElementById('userProfile');
+
+        // Get the p tag
+        p.innerHTML = (`
+            <p>${data.bio}</p>
+            <p>${data.location}</p>
+        `);
+
+    }
+
+    // Send the request to the server
+    xhr.send();
+    
+}
+
+function requestUserRepos(username) {
+    
+    // Create new XMLHttpRequest object
+    const xhr = new XMLHttpRequest();
+
+    // Fetch repo data
     
     // GitHub endpoint, dynamically passing in specified username
     const url = `https://api.github.com/users/${username}/repos`;
@@ -87,7 +127,7 @@ function requestUserRepos(username){
 
         arr.map(el => {
         if (!res[el]) {
-            return res[el] = (arr.filter(ob => ob === el).length * 100 / arr.length).toFixed(2) + '%';
+            return res[el] = (arr.filter(ob => ob === el).length * 100 / arr.length).toFixed(0) + '%';
             }
         })
 
