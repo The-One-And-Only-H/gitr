@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 
 // Get the GitHub username input form
-const gitHubForm = document.getElementById('gitHubForm');
+const gitHubForm = document.getElementsByClassName('gitHubForm')[0];
 
 // Listen for submissions on GitHub username input form
 gitHubForm.addEventListener('submit', (e) => {
@@ -11,7 +11,7 @@ gitHubForm.addEventListener('submit', (e) => {
     e.preventDefault();
 
     // Get the GitHub username input field on the DOM
-    let usernameInput = document.getElementById('usernameInput');
+    let usernameInput = document.getElementsByClassName('usernameInput')[0];
 
     // Get the value of the GitHub username input field
     let gitHubUsername = usernameInput.value;          
@@ -45,7 +45,7 @@ function requestUser(username) {
         const data = JSON.parse(this.response);
 
         // Get the p tag with id of of userProfile
-        let p = document.getElementById('userProfile');
+        let p = document.getElementsByClassName('userProfile')[0];
 
         // Get the p tag
         let bio = (data.bio !== null ? (
@@ -96,7 +96,7 @@ function requestUserRepos(username) {
         for (let i in data) {
 
             // Get the img with id of of userAvatar
-            let img = document.getElementById('userAvatar');
+            let img = document.getElementsByClassName('userAvatar')[0];
 
             // Get image
             img.innerHTML = (`
@@ -104,7 +104,7 @@ function requestUserRepos(username) {
             `);
 
             // Get the ul with id of of userRepos
-            let ul = document.getElementById('userRepos');
+            let ul = document.getElementsByClassName('userRepos')[0];
 
             if (data[i].language !== null && data[i].fork === false) {
                 // Create variable that will create li's to be added to ul
@@ -141,7 +141,7 @@ function requestUserRepos(username) {
         })
 
         // Get the p with id of of langPercentages
-        let p = document.getElementById('langPercentages');
+        let p = document.getElementsByClassName('langPercentages')[0];
 
         // Get percentages
         let x, txt = "";
