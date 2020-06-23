@@ -2,25 +2,29 @@ import React from 'react';
 import './App.css';
 
 // Get the GitHub username input form
-const gitHubForm = document.getElementsByClassName('gitHubForm')[0];
+const gitHubForm = document.getElementsByClassName('gitHubForm');
 
-// Listen for submissions on GitHub username input form
-gitHubForm.addEventListener('submit', (e) => {
-    
-    // Prevent default form submission action
-    e.preventDefault();
+for (let i = 0; i < gitHubForm.length; i++) {
 
-    // Get the GitHub username input field on the DOM
-    let usernameInput = document.getElementsByClassName('usernameInput')[0];
+    // Listen for submissions on GitHub username input form
+    gitHubForm[i].addEventListener('submit', (e) => {
+        
+        // Prevent default form submission action
+        e.preventDefault();
 
-    // Get the value of the GitHub username input field
-    let gitHubUsername = usernameInput.value;          
+        // Get the GitHub username input field on the DOM
+        let usernameInput = document.getElementsByClassName('usernameInput')[0];
 
-    // Run GitHub API function, passing in the GitHub username
-    requestUser(gitHubUsername);
-    requestUserRepos(gitHubUsername);
+        // Get the value of the GitHub username input field
+        let gitHubUsername = usernameInput.value;          
 
-})
+        // Run GitHub API function, passing in the GitHub username
+        requestUser(gitHubUsername);
+        requestUserRepos(gitHubUsername);
+
+    })
+
+}
 
 
 function requestUser(username) {
