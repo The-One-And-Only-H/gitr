@@ -11,6 +11,12 @@ for (let i = 0; i < gitHubForm.length; i++) {
         
         // Prevent default form submission action
         e.preventDefault();
+        document.e = e;
+
+        let pane = e.target.closest('.user-pane');
+
+        let input = pane.querySelector('input');
+        console.log(input.value);
 
         // Get the GitHub username input field on the DOM
         let usernameInput = document.getElementsByClassName('usernameInput')[0];
