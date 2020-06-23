@@ -21,15 +21,15 @@ for (let i = 0; i < gitHubForm.length; i++) {
         let gitHubUsername = usernameInput.value;          
 
         // Run GitHub API function, passing in the GitHub username
-        requestUser(gitHubUsername);
-        requestUserRepos(gitHubUsername);
+        requestUser(gitHubUsername, pane);
+        requestUserRepos(gitHubUsername, pane);
 
     })
 
 }
 
 
-function requestUser(username) {
+function requestUser(username, pane) {
     
     // Create new XMLHttpRequest object
     const xhr = new XMLHttpRequest();
@@ -51,7 +51,7 @@ function requestUser(username) {
         const data = JSON.parse(this.response);
 
         // Get the p tag with id of of userProfile
-        let p = document.getElementsByClassName('userProfile')[0];
+        let p = pane.getElementsByClassName('userProfile')[0];
 
         // Get the p tag
         let bio = (data.bio !== null ? (
@@ -75,7 +75,7 @@ function requestUser(username) {
     
 }
 
-function requestUserRepos(username) {
+function requestUserRepos(username, pane) {
     
     // Create new XMLHttpRequest object
     const xhr = new XMLHttpRequest();
@@ -102,7 +102,7 @@ function requestUserRepos(username) {
         for (let i in data) {
 
             // Get the img with id of of userAvatar
-            let img = document.getElementsByClassName('userAvatar')[0];
+            let img = pane.getElementsByClassName('userAvatar')[0];
 
             // Get image
             img.innerHTML = (`
@@ -147,7 +147,7 @@ function requestUserRepos(username) {
         })
 
         // Get the p with id of of langPercentages
-        let p = document.getElementsByClassName('langPercentages')[0];
+        let p = pane.getElementsByClassName('langPercentages')[0];
 
         // Get percentages
         let x, txt = "";
