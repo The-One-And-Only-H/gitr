@@ -1,0 +1,7 @@
+.container {
+  display: flex;
+}
+
+.user-pane {
+  flex: 50%;
+}

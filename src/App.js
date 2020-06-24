@@ -110,7 +110,7 @@ function requestUserRepos(username, pane) {
             `);
 
             // Get the ul with id of of userRepos
-            let ul = document.getElementsByClassName('userRepos')[0];
+            let ul = pane.getElementsByClassName('userRepos')[0];
 
             if (data[i].language !== null && data[i].fork === false) {
                 // Create variable that will create li's to be added to ul
