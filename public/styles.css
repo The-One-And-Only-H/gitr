@@ -5,3 +5,8 @@
 .user-pane {
   flex: 50%;
 }
+
+.wrapper {
+  text-align: center;
+  width: 300px;
+}
