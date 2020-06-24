@@ -4,11 +4,39 @@ body {
 
 h3 {
   font-size: 80px;
+  font-weight: bold;
+  font-style: italic;
 }
 
 h3, p {
   font-family: Verdana, Geneva, sans-serif;
   color: white;
+}
+
+img {
+  border-radius: 300px;
+  border: 3px solid white;
+}
+
+li {
+  background: rgba(255, 88, 100, 0.3) !important;
+  padding: 50px !important;
+  border-radius: 25px !important;
+  margin-bottom: 25px !important;
+  border: 1px solid white !important;
+}
+
+a {
+  color: white;
+}
+
+a:hover {
+  color: black;
+}
+
+#intro {
+  font-weight: bold;
+  padding-bottom: 50px;
 }
 
 .container {
@@ -17,8 +45,12 @@ h3, p {
 
 .user-pane {
   flex: 50%;
-  width: 50%;
-  text-align: center;
+  text-align: -webkit-center;
+}
+
+.gitHubForm {
+  padding-bottom: 50px;
+  width: 280px;
 }
 
 .forms {
@@ -26,11 +58,26 @@ h3, p {
   width: 300px;
 }
 
+.usernameInput {
+  border: 1px solid white;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 10px;
+  outline: none;
+  text-align: -webkit-center;
+}
+
 .submit {
-  background-color: #FF5864;
+  background-color: #ff5864;
   color: white;
   border: 1px solid white;
   margin: 10px;
   padding: 5px;
   border-radius: 5px;
+  outline: none;
+}
+
+.langPercentages {
+  color: white;
+  padding-bottom: 50px;
 }

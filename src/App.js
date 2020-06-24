@@ -54,6 +54,12 @@ function requestUser(username, pane) {
         let p = pane.getElementsByClassName('userProfile')[0];
 
         // Get the p tag
+        let name = (data.name !== null ? (
+            `<p><strong>Name:</strong> ${data.name}</p>`
+        ) : (
+            `<p>Name unspecified</p>`
+        )); 
+
         let bio = (data.bio !== null ? (
             `<p><strong>Bio:</strong> ${data.bio}</p>`
         ) : (
@@ -66,7 +72,7 @@ function requestUser(username, pane) {
             `<p>Location unspecified</p>`
         ));
 
-        p.innerHTML = bio + location;
+        p.innerHTML = name + bio + location;
 
     }
 
@@ -156,7 +162,9 @@ function requestUserRepos(username, pane) {
             txt += x + ": " + res[x] + " ";
         };
           
-        p.innerHTML = txt;
+        p.innerHTML = (`
+            <p><strong>Languages:</strong> ${txt}</p>
+        `);
 
     }
     
