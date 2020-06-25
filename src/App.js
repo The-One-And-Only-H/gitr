@@ -102,7 +102,7 @@ function requestUserRepos(username, pane) {
         // Parse API data into JSON
         const data = JSON.parse(this.response);
 
-        let arr = [];
+        let langs = [];
         
         // Loop over each object in data array
         for (let i in data) {
@@ -136,8 +136,8 @@ function requestUserRepos(username, pane) {
                 // Append each li to the ul
                 ul.appendChild(li);
 
-                let langs = data[i].language;
-                arr.push(langs);
+                let lang = data[i].language;
+                langs.push(lang);
 
             } 
         
@@ -146,9 +146,9 @@ function requestUserRepos(username, pane) {
         // Calculate percentages for languages
         let res = {};
 
-        arr.map(el => {
+        langs.map(el => {
             if (!res[el]) {
-                return res[el] = (arr.filter(ob => ob === el).length * 100 / arr.length).toFixed(0) + '%';
+                return res[el] = (langs.filter(ob => ob === el).length * 100 / langs.length).toFixed(0) + '%';
             }
         })
 
@@ -166,10 +166,48 @@ function requestUserRepos(username, pane) {
             <p><strong>Languages:</strong> ${txt}</p>
         `);
 
+        pane.langs = langs;
+
+        matchLanguagesFromPanes();
+
     }
-    
+
     // Send the request to the server
     xhr.send();
+
+}
+
+// Calculate profile percentage match
+
+function matchLanguagesFromPanes() {
+
+    let panes = document.getElementsByClassName('user-pane');
+
+    if (panes[0].langs === undefined || panes[1].langs === undefined) {
+        return;
+    }
+
+    let matchPercent = matchLanguages(panes[0].langs, panes[1].langs);
+    console.log(matchPercent)
+    
+}
+
+function matchLanguages(A, B) {
+
+    return "result";
+
+    // function list_to_dict(langs) {
+    //     let obj = {};
+
+    //     langs.map(el => {
+    //         if (!obj[el]) {
+    //             return obj[el] = (langs.filter(ob => ob === el).length);
+    //         }
+    //     })
+
+    //     return obj;
+
+    // }  
     
 }
 
