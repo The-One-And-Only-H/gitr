@@ -152,7 +152,7 @@ function requestUserRepos(username, pane) {
             }
         })
 
-        // Get the p with id of of langPercentages
+        // Get the p with class of of langPercentages
         let p = pane.getElementsByClassName('langPercentages')[0];
 
         // Get percentages
@@ -187,8 +187,12 @@ function matchLanguagesFromPanes() {
         return;
     }
 
-    let matchPercent = matchLanguages(panes[0].langs, panes[1].langs);
-    console.log(matchPercent)
+    // Get the p with class of of matchPercentage
+    let p = document.getElementById('matchPercentage');
+
+    p.innerHTML = (`
+        <p>${(matchLanguages(panes[0].langs, panes[1].langs)).toFixed(0) + '%'}</p>
+    `);
     
 }
 
@@ -199,19 +203,19 @@ function matchLanguages(A, B) {
     fillMissing(counts1, counts2);
     fillMissing(counts2, counts1);
 
+    let max = 0; 
+    let diff = 0;
+
+    for (const key in counts1) {
+        max += Math.max(counts1[key], counts2[key]);
+        diff += Math.abs(counts1[key] - counts2[key]);
+    }
+    
+    let match = (1 - (diff / max)) * 100;
+
+    return match;
+
 }
-
-// calculate the max difference that the objs can have
-// this is the sum of the maximum of the two values for each key
-// example: {python: 3, java: 1: JS 0}, {python: 2, java: 3: JS 1 }
-// you have 3 + 3 + 1 = 7
-
-// calculate the sum of the differences of the values, so in the same example it would be 1 + 2 + 1 = 4
-
-// find the "match" which I think is (1 - (diff / sum)) * 100
-// if diff = 0 then diff / sum = 0, so 1 - 0 = 1 so 1 * 100 = 100 - perfect match
-// if diff = sum then diff / sum = 1, then 1 - 1 = 0, then 0 * 100 = 0 - terrible match
-// in the case above it would be (1 - (4 / 7)) * 100 = 42%
 
 function fillMissing(o1, o2) {
 
@@ -220,13 +224,6 @@ function fillMissing(o1, o2) {
             o1[key] = 0;
         }
     }
-
-    const sumValues = obj => Object.values(obj).reduce((a, b) => a + b);
-
-    const sum = sumValues(o1) + sumValues(o2);
-
-    console.log(sum);
-
 }
 
 function list_to_obj(langs) {

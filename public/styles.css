@@ -40,6 +40,11 @@ a:hover {
   padding-bottom: 50px;
 }
 
+#matchPercentage {
+  font-size: 60px;
+  font-weight: bold;
+}
+
 .container {
   display: flex;
 }
@@ -82,3 +87,5 @@ a:hover {
   color: white;
   padding-bottom: 50px;
 }
+
+
