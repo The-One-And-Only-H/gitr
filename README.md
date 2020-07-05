@@ -1,3 +1,22 @@
+# gitr
+
+GitHub and Tinder rolled into one! Built with React and the GitHub API.
+
+Inspired by this comic:
+
+![Inspirational comic](/public/images/comic.jpeg)
+
+Tech stack:
+
+- HTML5
+- CSS3
+- Bootstrap
+- JavaScript
+- React
+- GitHub API
+
+Below is the original README from the Create React App repo on GitHub:
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
