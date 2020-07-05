@@ -1,4 +1,4 @@
-# gitr
+# Gitr
 
 GitHub and Tinder rolled into one! Built with React and the GitHub API.
 
